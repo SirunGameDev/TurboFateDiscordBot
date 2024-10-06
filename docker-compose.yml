@@ -1,0 +1,20 @@
+services:
+  nodejs:
+    build: ./docker/
+    image: node_turbofate
+    restart: always
+    container_name: turbofate_app
+    working_dir: /var/www/html/app
+    volumes:
+      - ./app/:/var/www/html/app
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
+    tty: true
+    command:       
+      - /bin/sh
+      #- -c
+      #- |
+      #  npm run register
+      #  npm run start
