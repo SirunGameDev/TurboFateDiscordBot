@@ -1,4 +1,4 @@
-class Character {
+export class Character {
 
     #name;
     #pronouns;
@@ -36,5 +36,18 @@ class Character {
 
     constructor() {
 
+    }
+
+    getName() {
+        return this.#name;
+    }
+    setName (name)  {
+        console.log(typeof name);
+        if (typeof name == "string") {
+            this.#name = name;
+        }
+        if (typeof name != "string") {
+            throw new Error('No String provided');
+        }
     }
 }
