@@ -42,12 +42,70 @@ export class Character {
         return this.#name;
     }
     setName (name)  {
-        console.log(typeof name);
         if (typeof name == "string") {
             this.#name = name;
         }
         if (typeof name != "string") {
             throw new Error('No String provided');
         }
+    }
+    getPronouns() {
+        return this.#pronouns;
+    }
+    setPronouns(pronoun) {
+        if(typeof pronoun == "string") {
+            this.#pronouns = pronoun;
+        }
+        if (typeof pronoun != "string") {
+            throw new Error('No String provided');
+        }
+    }
+    getDescription() {
+        return this.#description;
+    }
+    setDescription(desc) {
+        this.#description=desc;
+    }
+    getRefresh() {
+        return this.#refresh;
+    }
+    setRefresh(rate) {
+        this.#refresh = rate;
+    }
+    getFatePoints () {
+        return this.#fatepoints;
+    } 
+    setFatePoints(number) {
+        this.#fatepoints = number;
+    }
+    getAspects() {
+        return this.#aspects;
+    }
+    setAspects(Obj) {
+        this.#aspects = Obj;
+    }
+    getApproaches () {
+        return this.#approaches;
+    }
+    setApproaches(Obj) {
+        this.#approaches = Obj;
+    }
+    getStunts () {
+        return this.#stunts;
+    }
+    setStunts (stunts) {
+        this.#stunts = stunts;
+    }
+    getStress() {
+        return this.#stress;
+    }
+    setStress(stress) {
+        this.#stress = stress;
+    }
+    getConsequences() {
+        return this.#consequences;
+    }
+    setConsequences(consequences) {
+        this.#consequences = consequences;
     }
 }
