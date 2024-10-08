@@ -1,3 +1,5 @@
+import { Approaches } from "./Approaches.js";
+import {typeChecker} from "libs.js";
 export class Character {
 
     #name;
@@ -41,6 +43,8 @@ export class Character {
     getName() {
         return this.#name;
     }
+
+    @typeChecker("string")
     setName (name)  {
         if (typeof name == "string") {
             this.#name = name;
