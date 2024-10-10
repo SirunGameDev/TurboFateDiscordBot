@@ -1,55 +1,80 @@
 
-overcome = {
+export const overcome = {
     english : "overcome",
     german  : "überwinden"
 }
 
-attack = {
+export const attack = {
     english : "attack",
     german  : "attackieren"
 }
 
-createAdvantage = {
+export const createAdvantage = {
     english : "create Advantage",
     german  : "Vorteil erschaffen",
 }
 
-defend = {
+export const defend = {
     english : "defend",
     german  : "verteidigen"
 }
 
-approaches = {
+export const approaches = {
     english : "approaches",
-    german  : "methoden"
+    german  : "Methoden"
 }
 
-careful = {
+export const careful = {
     english : "careful",
     german  : "sorgfältig"
 }
 
-clever = {
+export const clever = {
     english : "clever",
     german  : "scharfsinnig",
 }
 
-flashy = {
+export const flashy = {
     english : "flashy",
     german  : "tollkühn",
 }
 
-forceful = {
+export const forceful = {
     english : "forcecul",
     german  : "tatkräftig"
 }
 
-quick = {
+export const quick = {
     english : "quick",
     german  : "flink"
 }
 
-sneaky = {
+export const sneaky = {
     english : "sneaky",
     german  : "hinterhältig"
+}
+
+export const outcome = {
+    english : "outcome",
+    german  : "ergebnis"
+}
+
+export const fail = {
+    english : "fail",
+    german  : "Fehlschlag"
+}
+
+export const tie = {
+    english : "tie",
+    german  : "Gleichstand"
+}
+
+export const succeed = {
+    english : "succeed",
+    german  : "Erfolg"
+}
+
+export const succeedwithstyle = {
+    english : "succeed with style",
+    german  : "voller Erfolg"
 }
