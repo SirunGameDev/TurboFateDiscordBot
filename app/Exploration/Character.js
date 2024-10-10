@@ -10,19 +10,19 @@ export class Character {
     #fatepoints;
 
     #aspects = {
-        '1': "", // High Concept
-        '2': "", // Trouble
-        '3': "",
-        '4': "",
-        '5': ""
+        1: "", // High Concept
+        2: "", // Trouble
+        3: "",
+        4: "",
+        5: ""
     };
     #approaches = {
-        "careful" : 0,
-        "clever"  : 0,
-        "flashy"  : 0,
-        "forceful": 0,
-        "quick"   : 0,
-        "sneaky"  : 0
+        careful : 0,
+        clever  : 0,
+        flashy  : 0,
+        forceful: 0,
+        quick  : 0,
+        sneaky  : 0
     };
     #stunts;
     #stress =  {
