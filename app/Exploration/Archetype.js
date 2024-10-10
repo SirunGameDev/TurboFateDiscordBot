@@ -10,3 +10,18 @@ export function getFighter() {
     
     return char;
 }
+
+export function getReth() {
+    var char = new Character();
+
+    char.setName("Reth");
+    char.setDescription ("Reth ist 14 Jahre alt. Er hat dunkelbraune Haut und dunkle Haare, die er in dicken Dreadlocks trägt. ...");
+    char.setApproaches(
+        // (careful?: 2, clever?: 1, flashy?: 0, forceful?: 3, quick?: 2, sneaky?: 1)
+        new Approaches( 2, 1, 0, 3, 2, 1)
+    );
+
+    char.setStunts ({
+        1 : ""
+    })
+}
