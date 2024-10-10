@@ -1,5 +1,6 @@
 import { Character } from "./Character.js";
 import { Approaches } from "./Approaches.js";
+import {Stunt} from "./Stunt.js";
 export function getFighter() {
     var char = new Character();
 
@@ -22,6 +23,6 @@ export function getReth() {
     );
 
     char.setStunts ({
-        1 : ""
+        1 : new Stunt("Kata der Unbeugsamen Sonne", "defend", "forceful" )
     })
 }
