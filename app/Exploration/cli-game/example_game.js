@@ -4,7 +4,7 @@ import { program } from "commander";
 import chalk from "chalk";
 import inquirer from "inquirer";
 import ora from "ora";
-
+import {getFighter, getReth} from "../Archetype.js";
 program.version("1.0.0").description("My Node CLI");
 
 program.action(() => {
@@ -14,7 +14,7 @@ program.action(() => {
         type: "list",
         name: "choice",
         message: "Choose an option:",
-        choices: ["Option 1", "Option 2", "Option 3"],
+        choices: ["Reth", "Fighter", "Quit"],
       },
     ])
     .then((result) => {
@@ -22,7 +22,10 @@ program.action(() => {
 
       setTimeout(() => {
         spinner.succeed(chalk.green("Done!"));
-      }, 3000);
+      }, 1000);
+      if(result.choice == "Reth") {
+        ora(getReth());
+      }
     });
 });
 
