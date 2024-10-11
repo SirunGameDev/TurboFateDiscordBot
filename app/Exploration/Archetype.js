@@ -25,4 +25,6 @@ export function getReth() {
     char.setStunts ({
         1 : new Stunt("Kata der Unbeugsamen Sonne", "defend", "forceful" )
     })
+
+    return char;
 }

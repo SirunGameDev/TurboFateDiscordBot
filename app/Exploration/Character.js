@@ -112,4 +112,23 @@ export class Character {
     setConsequences(consequences) {
         this.#consequences = consequences;
     }
+
+    checkAlive() {
+        let stress = checkStress();
+        let consq = checkConsequences();
+    }
+    checkStress () {
+        let sum = 0;
+        for (let stress of this.getStress()) {
+            sum += stress;
+        }
+        return stress < 7;
+    }
+    checkConsequences() {
+        let sum = 0;
+        for (let con of this.getConsequences()) {
+            sum += con;
+        }
+        return con < 13;
+    }
 }
