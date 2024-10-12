@@ -1,10 +1,19 @@
 import inquirer from "inquirer";
 
 import {getFighter, getReth} from "../Archetype.js";
-
+import { Scenario } from "./Scenario.js";
 
 const scenarios = [
-    {
+
+    new Scenario(
+        "intro", 
+        "Beginn your adventure! Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
+        [
+            { name: 'Fighter!', char: getFighter(), nextScenario: 'fight' },
+            { name: 'Reth!', char: getReth(), nextScenario: 'fight' }
+        ]
+    ),
+    /*{
         name: 'intro',
         message: "Beginn your adventure! Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(),
         choices: [
@@ -14,32 +23,46 @@ const scenarios = [
     },
     {
         name: "fight",
-        message: "You fight! As... ",
+        message: "You fight! What do you do? ",
         choices: [
-            { name: "Attack!", nextScenario: "fight"},
+            { name: "Continue", nextScenario: "fight"},
             { name: "Flee!", nextScenario: ""},
 
         ]
-    }
+    }*/
+    new Scenario(
+        "fight", 
+        "You fight! What do you do? ", 
+        [
+            { name: "Continue", nextScenario: "fight"},
+            { name: "Flee!", nextScenario: ""},
+        ]
+    ),
 ]
 
 const presentScenario = async (scenario, char) => {
-    let addition = "";
-    if (char != "" ) {
-        addition += char.getName()+JSON.stringify(char.getStress());
-    }
+
+    let messageReturn = getMessage(scenario, char);
+
     const answers = await inquirer.prompt([
         {
             type: 'list',
             name: 'choice',
-            message: scenario.message + addition,
+            message: messageReturn,
             choices: scenario.choices.map(choice => choice.name),
         }
     ]);
 
     return answers.choice;
 };
-
+function getMessage(scenario, char) {
+    let string = "";
+    if (char != "") {
+        string += "Your character: "+char.getName()+JSON.stringify(char.getStress())+"\n";
+    }
+    string += scenario.message;
+    return string;
+}
 // Function to start the game
 const startGame = async () => {
     // Start with the 'intro' scenario
