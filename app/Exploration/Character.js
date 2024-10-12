@@ -26,16 +26,16 @@ export class Character {
     };
     #stunts;
     #stress =  {
-        "1" : "",
-        "2" : "",
-        "3" : "",
+        1 : 0,
+        2 : 0,
+        3 : 0,
     };
     #consequences = {
-        "2" : "",
-        "4" : "",
-        "6" : "",
+        2 : 0,
+        4 : 0,
+        6 : 0,
     };
-
+    #alive = true;
     constructor() {
 
     }
@@ -112,23 +112,93 @@ export class Character {
     setConsequences(consequences) {
         this.#consequences = consequences;
     }
-
-    checkAlive() {
-        let stress = checkStress();
-        let consq = checkConsequences();
+    getAlive() {
+        return this.#alive;
     }
-    checkStress () {
-        let sum = 0;
-        for (let stress of this.getStress()) {
-            sum += stress;
-        }
-        return stress < 7;
+    setAlive(bool) {
+        this.#alive = bool;
+    }
+    checkAlive() {
+        let stress = this.checkStress();
+        let consq = this.checkConsequences();
+
+        return this.#alive && stress && consq;
+    }
+    checkStress() {
+        let obj = this.getStress();
+        let sum = this.getSumofObj(obj);
+        return sum < 7;
     }
     checkConsequences() {
+        let obj = this.getConsequences();
+        let sum = this.getSumofObj(obj);
+        return sum < 13;
+    }
+    getSumofObj(obj) {
         let sum = 0;
-        for (let con of this.getConsequences()) {
-            sum += con;
+        for (let prop in obj) {
+            sum += obj[prop];
         }
-        return con < 13;
+        return sum;
+    }
+
+    soakDmg (dmg) {
+        dmg = soakwithStress(dmg);
+        if(dmg > 0) return;
+        dmg = soakwithConsq (dmg);
+        if(dmg > 0) return;
+        this.setAlive(false);    
+    }
+    soakwithStress(dmg) {
+        let stress = this.getStress();
+        let stressfree = new Array();
+        for (let key in stress){
+            if(dmg <= 0) return 0;
+
+            if (dmg <= key && stress[key] == 0) {
+                this.#stress[key] = key;
+                dmg = dmg-key;
+                return dmg;
+            }
+            if (dmg > key && stress[key] == 0) {
+                
+                stressfree.push(key);
+            }
+        }
+        if (stressfree.length > 0) {
+            let lastkey = stressfree.pop();
+            this.#stress[lastkey] = lastkey;
+            return dmg-lastkey;
+        }
+        return dmg;
+    }
+
+
+    soakwithConsq(dmg) {
+        let stress = this.getConsequences();
+        let stressfree = new Array();
+        for (let key in stress){
+            if(dmg <= 0) return 0;
+
+            if (dmg <= key && stress[key] == 0) {
+                this.#consequences[key] = key;
+                dmg = dmg-key;
+                return dmg;
+            }
+            if (dmg > key && stress[key] == 0) {
+                
+                stressfree.push(key);
+            }
+        }
+        if (stressfree.length > 0) {
+            let lastkey = stressfree.pop();
+            this.#consequences[lastkey] = lastkey;
+            return dmg-lastkey;
+        }
+        return dmg;
+    }
+
+    soakWith (dmg,obj) {
+        // to abstract stress and consqeuences
     }
 }
