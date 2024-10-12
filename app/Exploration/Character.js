@@ -1,4 +1,6 @@
 import { Approaches } from "./Approaches.js";
+import * as Dice from "./Dice.js";
+import { forceful } from "./translations.js";
 //import {typeChecker} from "libs.js";
 export class Character {
 
@@ -143,10 +145,10 @@ export class Character {
     }
 
     soakDmg (dmg) {
-        dmg = soakwithStress(dmg);
-        if(dmg > 0) return;
-        dmg = soakwithConsq (dmg);
-        if(dmg > 0) return;
+        dmg = this.soakwithStress(dmg);
+        if(dmg <= 0) return;
+        dmg = this.soakwithConsq (dmg);
+        if(dmg <= 0) return;
         this.setAlive(false);    
     }
     soakwithStress(dmg) {
@@ -200,5 +202,17 @@ export class Character {
 
     soakWith (dmg,obj) {
         // to abstract stress and consqeuences
+    }
+
+    attack () {
+        // always forceful, stunts
+        return this.makeThrow()+this.getApproaches()["forceful"];
+    }
+    defend(){
+        // always forceful, stunts
+        return this.makeThrow()+this.getApproaches()["forceful"];
+    }
+    makeThrow (){
+        return Dice.getTurboFateRoll();
     }
 }

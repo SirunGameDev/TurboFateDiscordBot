@@ -9,27 +9,10 @@ const scenarios = [
         "intro", 
         "Beginn your adventure! Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
         [
-            { name: 'Fighter!', char: getFighter(), nextScenario: 'fight' },
-            { name: 'Reth!', char: getReth(), nextScenario: 'fight' }
+            { name: 'Fighter!', nextScenario: 'fight' },
+            { name: 'Reth!', nextScenario: 'fight' }
         ]
     ),
-    /*{
-        name: 'intro',
-        message: "Beginn your adventure! Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(),
-        choices: [
-            { name: 'Fighter!', char: getFighter(), nextScenario: 'fight' },
-            { name: 'Reth!', char: getReth(), nextScenario: 'fight' }
-        ],
-    },
-    {
-        name: "fight",
-        message: "You fight! What do you do? ",
-        choices: [
-            { name: "Continue", nextScenario: "fight"},
-            { name: "Flee!", nextScenario: ""},
-
-        ]
-    }*/
     new Scenario(
         "fight", 
         "You fight! What do you do? ", 
@@ -38,11 +21,23 @@ const scenarios = [
             { name: "Flee!", nextScenario: ""},
         ]
     ),
+    new Scenario(
+        "won",
+        "You have won",
+        [ { name: "Yeah", nextScenario: ""}]
+    ),
+    new Scenario(
+        "lost",
+        "You have lost",
+        [
+          { name: "Oh no!", nextScenario: ""}
+        ]
+    )
 ]
 
-const presentScenario = async (scenario, char) => {
+const presentScenario = async (scenario, char, enemy) => {
 
-    let messageReturn = getMessage(scenario, char);
+    let messageReturn = getMessage(scenario, char, enemy);
 
     const answers = await inquirer.prompt([
         {
@@ -55,10 +50,13 @@ const presentScenario = async (scenario, char) => {
 
     return answers.choice;
 };
-function getMessage(scenario, char) {
+function getMessage(scenario, char, enemy) {
     let string = "";
     if (char != "") {
         string += "Your character: "+char.getName()+JSON.stringify(char.getStress())+"\n";
+    }
+    if (enemy != "") {
+        string += "Your Enemy: "+enemy.getName()+JSON.stringify(enemy.getStress())+"\n";
     }
     string += scenario.message;
     return string;
@@ -68,17 +66,38 @@ const startGame = async () => {
     // Start with the 'intro' scenario
     let currentScenario = scenarios.find(scenario => scenario.name === 'intro');
     let activeChar = "";
+    let enemyChar = "";
     // Continue looping through scenarios as long as there's a current scenario
     while (currentScenario) {
         
         // Present the current scenario to the player and get their choice
-        const playerChoice = await presentScenario(currentScenario, activeChar);
-
+        let playerChoice = await presentScenario(currentScenario, activeChar, enemyChar);
+        
         if(playerChoice == "Reth!") {
             activeChar = getReth();
+            enemyChar = getFighter();
         }
         if(playerChoice == "Fighter!") {
             activeChar = getFighter();
+            enemyChar = getReth();
+        }
+        if(playerChoice == "Continue") {
+            let enemydmg = enemyChar.attack() - activeChar.defend();
+            let activedmg = activeChar.attack() - enemyChar.defend();
+            
+            activeChar.soakDmg(enemydmg);
+            enemyChar.soakDmg(activedmg);
+
+            if (false === enemyChar.getAlive()) {
+                playerChoice="won";
+                currentScenario = scenarios.find(scenario => scenario.name === "won");
+                continue;
+            }
+            if (false === activeChar.getAlive()) {
+                currentScenario = scenarios.find(scenario => scenario.name === "lost");
+                continue;
+            }
+            
         }
         // Find the next scenario based on the player's choice and update the current scenario
         currentScenario = scenarios.find(scenario => scenario.name === currentScenario.choices.find(choice => choice.name === playerChoice).nextScenario);
