@@ -215,7 +215,6 @@ export class Character {
         let approach = "forceful";
         let stunts = this.findfittingStuntsbyActionApproach(action, approach);
         let add = 2*stunts.length;
-        console.log(add);
         return this.makeThrow()+this.getApproaches()[approach]+add;
     }
     makeThrow (){

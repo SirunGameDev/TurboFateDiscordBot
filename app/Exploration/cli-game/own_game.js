@@ -4,7 +4,13 @@ import {getFighter, getReth} from "../Archetype.js";
 import { Scenario } from "./Scenario.js";
 
 const scenarios = [
-
+    new Scenario(
+        "beginn",
+        "Beginn einer Abenteuerreise.",
+        [
+            {name: "Wähle einen Charakter", nextScenario: 'intro'},
+        ]
+    ),
     new Scenario(
         "intro", 
         "Beginn your adventure! Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
@@ -64,11 +70,11 @@ function getMessage(scenario, char, enemy) {
 // Function to start the game
 const startGame = async () => {
     // Start with the 'intro' scenario
-    let currentScenario = scenarios.find(scenario => scenario.name === 'intro');
+    let currentScenario = scenarios.find(scenario => scenario.name === 'beginn');
     let activeChar = "";
     let enemyChar = "";
     // Continue looping through scenarios as long as there's a current scenario
-    while (currentScenario) {
+    scenarioLoop: while (currentScenario) {
         
         // Present the current scenario to the player and get their choice
         let playerChoice = await presentScenario(currentScenario, activeChar, enemyChar);
@@ -81,23 +87,24 @@ const startGame = async () => {
             activeChar = getFighter();
             enemyChar = getReth();
         }
-        if(playerChoice == "Continue") {
+        
+        fightLoop: while(playerChoice == "Continue" && (enemyChar.getAlive() == activeChar.getAlive())){
+
+
             let enemydmg = enemyChar.attack() - activeChar.defend();
             let activedmg = activeChar.attack() - enemyChar.defend();
-            
+
             activeChar.soakDmg(enemydmg);
             enemyChar.soakDmg(activedmg);
 
             if (false === enemyChar.getAlive()) {
-                playerChoice="won";
                 currentScenario = scenarios.find(scenario => scenario.name === "won");
-                continue;
+                continue scenarioLoop;
             }
             if (false === activeChar.getAlive()) {
                 currentScenario = scenarios.find(scenario => scenario.name === "lost");
-                continue;
+                continue scenarioLoop;
             }
-            
         }
         // Find the next scenario based on the player's choice and update the current scenario
         currentScenario = scenarios.find(scenario => scenario.name === currentScenario.choices.find(choice => choice.name === playerChoice).nextScenario);
