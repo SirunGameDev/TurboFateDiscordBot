@@ -18,14 +18,14 @@ export class Character {
         4: "",
         5: ""
     };
-    #approaches = {
-        careful : 0,
-        clever  : 0,
-        flashy  : 0,
-        forceful: 0,
-        quick  : 0,
-        sneaky  : 0
-    };
+    #approaches = new Approaches(
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    );
     #stunts = [];
     #stress =  {
         1 : 0,
@@ -205,22 +205,33 @@ export class Character {
     }
 
     attack () {
-        // always forceful, stunts
-        return this.makeThrow()+this.getApproaches()["forceful"];
+        return this.doAction("attack");
     }
     defend(){
+        return this.doAction("defend");
+    }
+    doAction(action) {
         // always forceful, stunts
-        return this.makeThrow()+this.getApproaches()["forceful"];
+        let approach = "forceful";
+        let stunts = this.findfittingStuntsbyActionApproach(action, approach);
+        let add = 2*stunts.length;
+        console.log(add);
+        return this.makeThrow()+this.getApproaches()[approach]+add;
     }
     makeThrow (){
         return Dice.getTurboFateRoll();
     }
     findfittingStuntsbyAction(action) {
         let stunts = this.getStunts();
-        return stunts.find(stunt => stunt.action == action);
+        return stunts.filter(stunt => stunt.action == action);
         
     }
-    findfittingStuntsbyApproach() {
-
+    findfittingStuntsbyApproach(approach) {
+        let stunts = this.getStunts();
+        return stunts.filter(stunt => stunt.approach == approach);
+    }
+    findfittingStuntsbyActionApproach(action, approach){
+        let stunts = this.getStunts();
+        return stunts.filter(stunt => stunt.action == action && stunt.approach == approach)
     }
 }

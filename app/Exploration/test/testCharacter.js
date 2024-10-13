@@ -58,6 +58,11 @@ describe('Character' , (t) => {
     it('test Stunt finding', () => {
         var char = getReth();
 
-        assert.strictEqual("Kata der Unbeugsamen Sonne", char.findfittingStuntsbyAction("defend").name)
-    })
+        assert.strictEqual("Kata der Unbeugsamen Sonne", char.findfittingStuntsbyAction("defend")[0].name);
+        assert.strictEqual("Kata der Unbeugsamen Sonne", char.findfittingStuntsbyApproach("forceful")[0].name);
+        assert.strictEqual("Kata der Unbeugsamen Sonne", char.findfittingStuntsbyActionApproach("defend", "forceful")[0].name);
+
+
+    });
+    
 });

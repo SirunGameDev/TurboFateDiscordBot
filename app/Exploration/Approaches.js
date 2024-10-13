@@ -16,4 +16,19 @@ export class Approaches {
         this.quick = quick;
         this.sneaky = sneaky;
     }
+    getArray() {
+    return [
+        {careful : this.careful},
+        
+        {clever : this.clever},
+
+        {flashy : this.flashy},
+
+        {forceful : this.forceful},
+
+        {quick : this.quick},
+
+        {sneaky : this.sneaky},
+
+    ]}
 }
