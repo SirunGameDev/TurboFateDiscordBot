@@ -1,7 +1,7 @@
 import {Character} from "../Character.js";
 import assert from 'node:assert/strict';
 import { describe, it, test } from 'node:test';
-
+import { getReth } from "../Archetype.js";
 describe('Character' , (t) => {
     it ('assign String as name', () => {
         var CharObj = new Character();
@@ -54,4 +54,10 @@ describe('Character' , (t) => {
 
 
     });
+
+    it('test Stunt finding', () => {
+        var char = getReth();
+
+        assert.strictEqual("Kata der Unbeugsamen Sonne", char.findfittingStuntsbyAction("defend").name)
+    })
 });

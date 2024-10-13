@@ -22,9 +22,10 @@ export function getReth() {
         new Approaches( 2, 1, 0, 3, 2, 1)
     );
 
-    char.setStunts ({
-        1 : new Stunt("Kata der Unbeugsamen Sonne", "defend", "forceful" )
-    })
+    char.setStunts (
+        // name is used in text
+         [new Stunt("Kata der Unbeugsamen Sonne", "defend", "forceful" )]
+    )
 
     return char;
 }

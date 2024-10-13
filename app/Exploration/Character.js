@@ -26,7 +26,7 @@ export class Character {
         quick  : 0,
         sneaky  : 0
     };
-    #stunts;
+    #stunts = [];
     #stress =  {
         1 : 0,
         2 : 0,
@@ -214,5 +214,13 @@ export class Character {
     }
     makeThrow (){
         return Dice.getTurboFateRoll();
+    }
+    findfittingStuntsbyAction(action) {
+        let stunts = this.getStunts();
+        return stunts.find(stunt => stunt.action == action);
+        
+    }
+    findfittingStuntsbyApproach() {
+
     }
 }
