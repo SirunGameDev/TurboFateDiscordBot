@@ -8,15 +8,22 @@ const scenarios = [
         "beginn",
         "Beginn einer Abenteuerreise.",
         [
-            {name: "Wähle einen Charakter", nextScenario: 'intro'},
+            {name: "Wähle einen Charakter", nextScenario: 'char-select'},
         ]
     ),
     new Scenario(
-        "intro", 
-        "Beginn your adventure! Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
+        "char-select", 
+        "Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
         [
-            { name: 'Fighter!', nextScenario: 'fight' },
-            { name: 'Reth!', nextScenario: 'fight' }
+            { name: 'Fighter!', nextScenario: 'activity-select' },
+            { name: 'Reth!', nextScenario: 'activity-select' }
+        ]
+    ),
+    new Scenario(
+        "activity-select",
+        "What you want to do?",
+        [
+            { name: "Kämpfen", nextScenario: 'fight'}
         ]
     ),
     new Scenario(
@@ -69,7 +76,6 @@ function getMessage(scenario, char, enemy) {
 }
 // Function to start the game
 const startGame = async () => {
-    // Start with the 'intro' scenario
     let currentScenario = scenarios.find(scenario => scenario.name === 'beginn');
     let activeChar = "";
     let enemyChar = "";
@@ -89,7 +95,6 @@ const startGame = async () => {
         }
         
         fightLoop: while(playerChoice == "Continue" && (enemyChar.getAlive() == activeChar.getAlive())){
-
 
             let enemydmg = enemyChar.attack() - activeChar.defend();
             let activedmg = activeChar.attack() - enemyChar.defend();
