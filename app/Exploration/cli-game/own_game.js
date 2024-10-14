@@ -94,7 +94,7 @@ const startGame = async () => {
         
         // Present the current scenario to the player and get their choice
         let playerChoice = await presentScenario(currentScenario, activeChar, enemyChar);
-        
+        // todo Move scenario handling to an extra function 
         if(playerChoice == "Reth!") {
             activeChar = getReth();
             enemyChar = getFighter();
