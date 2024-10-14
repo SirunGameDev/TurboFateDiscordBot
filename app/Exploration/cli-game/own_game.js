@@ -3,7 +3,8 @@ import inquirer from "inquirer";
 import {getFighter, getReth} from "../Archetype.js";
 import { Scenario } from "./Scenario.js";
 
-const scenarios = [
+// todo let vs var vs const
+let scenarios = [
     new Scenario(
         "beginn",
         "Beginn einer Abenteuerreise.",
