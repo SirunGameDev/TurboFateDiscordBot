@@ -125,7 +125,7 @@ const startGame = async () => {
         let parkourCounter = 0;
         parkourLoop: while (currentScenario.name == "parkour" && playerChoice == "Continue") {
             let success = activeChar.overcome(parkourCounter);
-            console.log(parkourCounter);
+            
             if(success) {
                 parkourCounter++;
 
