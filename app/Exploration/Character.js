@@ -201,7 +201,7 @@ export class Character {
     }
 
     soakWith (dmg,obj) {
-        // to abstract stress and consqeuences
+        // todo abstract stress and consqeuences
     }
 
     attack () {
