@@ -210,8 +210,12 @@ export class Character {
     defend(){
         return this.doAction("defend");
     }
+    overcome(difficulty) {
+        return difficulty <= this.doAction("overcome");
+    }
     doAction(action) {
         // always forceful, stunts
+        // todo let approach change
         let approach = "forceful";
         let stunts = this.findfittingStuntsbyActionApproach(action, approach);
         let add = 2*stunts.length;

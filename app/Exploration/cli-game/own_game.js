@@ -23,8 +23,18 @@ const scenarios = [
         "activity-select",
         "What you want to do?",
         [
-            { name: "Kämpfen", nextScenario: 'fight'}
+            { name: "Kämpfen", nextScenario: 'fight'},
+            { name: "Parkour", nextScenario: 'parkour'}
         ]
+    ),
+    new Scenario(
+        "parkour",
+        "You need to overcome more and more difficult obstacles",
+        [
+            { name: "Continue", nextScenario: 'parkour'},
+            { name: "giveup", nextScenario: ""}
+        ]
+
     ),
     new Scenario(
         "fight", 
@@ -94,7 +104,7 @@ const startGame = async () => {
             enemyChar = getReth();
         }
         
-        fightLoop: while(playerChoice == "Continue" && (enemyChar.getAlive() == activeChar.getAlive())){
+        fightLoop: while(currentScenario.name == "fight" && playerChoice == "Continue" && (enemyChar.getAlive() == activeChar.getAlive())){
 
             let enemydmg = enemyChar.attack() - activeChar.defend();
             let activedmg = activeChar.attack() - enemyChar.defend();
@@ -107,6 +117,23 @@ const startGame = async () => {
                 continue scenarioLoop;
             }
             if (false === activeChar.getAlive()) {
+                currentScenario = scenarios.find(scenario => scenario.name === "lost");
+                continue scenarioLoop;
+            }
+        }
+        let parkourCounter = 0;
+        parkourLoop: while (currentScenario.name == "parkour" && playerChoice == "Continue") {
+            let success = activeChar.overcome(parkourCounter);
+            console.log(parkourCounter);
+            if(success) {
+                parkourCounter++;
+
+                if(parkourCounter > 3) {
+                    currentScenario = scenarios.find(scenario => scenario.name === "won");
+                    continue scenarioLoop;
+                }
+            }
+            else {
                 currentScenario = scenarios.find(scenario => scenario.name === "lost");
                 continue scenarioLoop;
             }
