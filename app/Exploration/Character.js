@@ -218,6 +218,7 @@ export class Character {
         // todo let approach change
         let approach = "forceful";
         let stunts = this.findfittingStuntsbyActionApproach(action, approach);
+        // todo change add calculation
         let add = 2*stunts.length;
         return this.makeThrow()+this.getApproaches()[approach]+add;
     }
