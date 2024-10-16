@@ -9,7 +9,7 @@ export let beginn = new Scenario(
     ]
 );
 
-export let charnew = new Scenario(
+export let charSelect = new Scenario(
     "char-select", 
     "Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
     [
@@ -26,4 +26,33 @@ export let charnew = new Scenario(
             charnew.factions[0] = getReth();
         }
     },
+);
+
+export let activitySelect = new Scenario (
+    "activity-select",
+    "What you want to do?",
+    [
+        { name: "Kämpfen", nextScenario: 'fight'},
+        { name: "Parkour", nextScenario: 'parkour'}
+    ]
+);
+
+
+export let fight = new Scenario(
+    "fight", 
+    "You fight! What do you do? ", 
+    [
+        { name: "Continue", nextScenario: "fight"},
+        { name: "Flee!", nextScenario: ""},
+    ]
+);
+
+export let parkour = new Scenario(
+    "parkour",
+    "You need to overcome more and more difficult obstacles",
+    [
+        { name: "Continue", nextScenario: 'parkour'},
+        { name: "giveup", nextScenario: ""}
+    ]
+
 );

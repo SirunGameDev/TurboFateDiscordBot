@@ -1,14 +1,14 @@
 import { GameEngine } from "./GameEngine.js";
 import { Story } from "./Story.js";
 import { Scenario } from "./Scenario.js";
-import { beginn, charnew } from "./ScenarioList.js";
+import { beginn, charSelect } from "./ScenarioList.js";
 let ownStory = new Story(
     "ownGame"
 );
 
 ownStory.scenarios = [
     beginn,
-    charnew,
+    charSelect,
     new Scenario(
         "activity-select",
         "What you want to do?",
