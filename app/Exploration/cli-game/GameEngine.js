@@ -1,4 +1,5 @@
 import inquirer from "inquirer";
+import { Scenario } from "./Scenario.js";
 
 export class GameEngine {
     Story;
@@ -31,8 +32,13 @@ export class GameEngine {
             
             if(currentScenario.playerChoiceHandler != "") {
                 let result = currentScenario.playerChoiceHandler(this.Story, playerChoice);
+                // atm result is string to find scenario -> todo is to move this part to scenarios
                 if (typeof result == "string") {
-                    currentScenario = scenarios.find(scenario => scenario.name === result);
+                    //currentScenario = scenarios.find(scenario => scenario.name === result);
+                    //continue scenarioLoop;
+                }
+                if(result instanceof Scenario) {
+                    currentScenario = result;
                     continue scenarioLoop;
                 }
             }

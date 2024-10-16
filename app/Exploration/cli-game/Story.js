@@ -9,4 +9,8 @@ export class Story {
     constructor(name) {
         this.name = name;
     }
+
+    findScenariobyName(string) {
+        return this.scenarios.find(scenario => scenario.name === string);
+    }
 }

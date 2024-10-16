@@ -65,10 +65,10 @@ export let fight = new Scenario(
             enemyChar.soakDmg(activedmg);
 
             if(false == enemyChar.getAlive()) {
-                return "won";
+                return Story.findScenariobyName("won");
             }
             if(false == activeChar.getAlive()) {
-                return "lost";
+                return Story.findScenariobyName("lost");
             }
         }
 
@@ -90,11 +90,11 @@ export let parkour = new Scenario(
                 parkourCounter++;
                 //console.log(parkourCounter);
                 if(parkourCounter > 3) {
-                    return "won";
+                   return Story.findScenariobyName("won");
                 }
             }
             else {
-                return "lost";
+                return Story.findScenariobyName("lost");
             }
         }
     },
