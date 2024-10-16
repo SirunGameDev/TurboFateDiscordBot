@@ -1,5 +1,5 @@
 import inquirer from "inquirer";
-import { getFighter, getReth } from "../Archetype.js";
+
 export class GameEngine {
     Story;
     constructor (Story) {
