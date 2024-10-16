@@ -1,3 +1,4 @@
+// wrapper not working
 export function typeChecker (type) { 
     return function (target, key, index) {
     const originalMethod = target[key];

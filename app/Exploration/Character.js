@@ -87,8 +87,8 @@ export class Character {
     getAspects() {
         return this.#aspects;
     }
-    setAspects(Obj) {
-        this.#aspects = Obj;
+    setAspects(place, Obj) {
+        this.#aspects[place] = Obj;
     }
     getApproaches () {
         return this.#approaches;
