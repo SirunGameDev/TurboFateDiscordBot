@@ -1,7 +1,6 @@
 import { GameEngine } from "./GameEngine.js";
 import { Story } from "./Story.js";
 import { Scenario } from "./Scenario.js";
-import { getFighter, getReth } from "../Archetype.js";
 import { beginn, charnew } from "./ScenarioList.js";
 let ownStory = new Story(
     "ownGame"
