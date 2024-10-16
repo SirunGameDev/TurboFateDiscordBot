@@ -16,14 +16,22 @@ export let charSelect = new Scenario(
         { name: 'Fighter!', nextScenario: 'activity-select' },
         { name: 'Reth!', nextScenario: 'activity-select' }
     ],
-    (playerChoice) => {
+    (Story, playerChoice) => {
         if(playerChoice == "Reth!") {
-            charnew.actingCharacter = getReth();
-            charnew.factions[0] = getFighter();
+            charSelect.actingCharacter = getReth();
+            Story.actingCharacter = getReth();
+
+            charSelect.factions[0] = getFighter();
+            Story.factions[0] = getFighter();
+
         }
         if(playerChoice == "Fighter!") {
-            charnew.actingCharacter = getFighter();
-            charnew.factions[0] = getReth();
+            charSelect.actingCharacter = getFighter();
+            Story.actingCharacter = getFighter();
+
+            charSelect.factions[0] = getReth();
+            Story.factions[0] = getReth();
+
         }
     },
 );
@@ -44,7 +52,27 @@ export let fight = new Scenario(
     [
         { name: "Continue", nextScenario: "fight"},
         { name: "Flee!", nextScenario: ""},
-    ]
+    ],
+    (Story) => {
+        // risk of endless fights?
+        let activeChar = Story.actingCharacter;
+        let enemyChar = Story.factions[0];
+        while (true) {
+            let enemydmg = enemyChar.attack() - activeChar.defend();
+            let activedmg = activeChar.attack() - enemyChar.defend();
+    
+            activeChar.soakDmg(enemydmg);
+            enemyChar.soakDmg(activedmg);
+
+            if(false == enemyChar.getAlive()) {
+                return "won";
+            }
+            if(false == activeChar.getAlive()) {
+                return "lost";
+            }
+        }
+
+    }
 );
 
 export let parkour = new Scenario(
@@ -53,8 +81,23 @@ export let parkour = new Scenario(
     [
         { name: "Continue", nextScenario: 'parkour'},
         { name: "giveup", nextScenario: ""}
-    ]
-
+    ],
+    (Story) => {
+        let parkourCounter = 0;
+        while(true) {
+            let success = Story.actingCharacter.overcome(parkourCounter);
+            if(success) {
+                parkourCounter++;
+                //console.log(parkourCounter);
+                if(parkourCounter > 3) {
+                    return "won";
+                }
+            }
+            else {
+                return "lost";
+            }
+        }
+    },
 );
 
 export let won = new Scenario(
