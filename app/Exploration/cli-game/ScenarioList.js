@@ -56,3 +56,17 @@ export let parkour = new Scenario(
     ]
 
 );
+
+export let won = new Scenario(
+    "won",
+    "You have won",
+    [ { name: "Yeah", nextScenario: ""}]
+);
+
+export let lost = new Scenario(
+    "lost",
+    "You have lost",
+    [
+      { name: "Oh no!", nextScenario: ""}
+    ]
+)
