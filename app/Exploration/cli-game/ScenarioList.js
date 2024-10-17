@@ -47,7 +47,7 @@ export let activitySelect = new Scenario (
 
 export let duel = new Scenario(
     "duel", 
-    "You duel! What do you do? ", 
+    "You duel as against What do you do? ", 
     [
         { name: "Continue", nextScenario: "duel"},
         { name: "Flee!", nextScenario: ""},

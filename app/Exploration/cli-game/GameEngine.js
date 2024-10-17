@@ -7,6 +7,12 @@ export class GameEngine {
         this.Story = Story;
     }
     async presentScenario (scenario) {
+        if(this.Story.actingCharacter) {
+            scenario.message = "Your Char: "+this.Story.actingCharacter.getName()+"\n"+scenario.message;
+        }
+        if(this.Story.factions[0]) {
+            scenario.message = "Your Enemy: "+this.Story.factions[0].getName()+"\n"+scenario.message;
+        }
         const answers = await inquirer.prompt([
             {
                 type: "list",

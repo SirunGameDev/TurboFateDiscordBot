@@ -8,8 +8,8 @@ export class Character {
     #pronouns;
     #description;
 
-    #refresh;
-    #fatepoints;
+    #refresh = 3;
+    #fatepoints = 3;
 
     #aspects = {
         1: "", // High Concept
