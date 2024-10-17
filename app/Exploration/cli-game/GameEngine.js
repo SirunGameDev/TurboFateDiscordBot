@@ -13,6 +13,8 @@ export class GameEngine {
         if(this.Story.factions[0]) {
             scenario.message = "Your Enemy: "+this.Story.factions[0].getName()+"\n"+scenario.message;
         }
+
+        // todo flexibel presentation, so not all scenarios needs 
         const answers = await inquirer.prompt([
             {
                 type: "list",
