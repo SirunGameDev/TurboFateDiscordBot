@@ -222,6 +222,40 @@ export class Character {
         let add = 2*stunts.length;
         return this.makeThrow()+this.getApproaches()[approach]+add;
     }
+    getHighestApproachforAction(action) {
+        let stunts = this.findfittingStuntsbyAction(action);
+        let possibleApproaches = this.getApproaches().getArray();
+
+        possibleApproaches = this.updateApproachesbyStunts(stunts, possibleApproaches);
+        
+        let max = this.findKeyofMaximumValueinArray(possibleApproaches);
+        return max;
+    }
+
+    updateApproachesbyStunts(stunts = this.getStunts() , possibleApproaches = this.getApproaches().getArray()) {
+        for (let stunt of stunts) {
+            let app = stunt.approach;
+            let index = possibleApproaches.findIndex(approach => Object.keys(approach)[0] === app);
+            let actuel = possibleApproaches.find(approach => Object.keys(approach)[0] === app);
+            actuel[app] += 2;
+            possibleApproaches[index] = actuel;
+        }
+        return possibleApproaches;
+    }
+    findKeyofMaximumValueinArray(array) {
+        let index = 0;
+        let counter = 0;
+        let max = 0;
+        for(let element of array) {
+            let value = Object.values(element)[0];
+            if(value > max) {
+                index = counter;
+                max = value;
+            }
+            counter++;
+        }
+        return Object.keys(array[index])[0];
+    }
     makeThrow (){
         return Dice.getTurboFateRoll();
     }

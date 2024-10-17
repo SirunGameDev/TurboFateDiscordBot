@@ -1,6 +1,6 @@
 import { Character } from "./Character.js";
 import { Approaches } from "./Approaches.js";
-import {Stunt} from "./Stunt.js";
+import { Stunt } from "./Stunt.js";
 import { Aspect } from "./Aspect.js";
 export function getFighter() {
     var char = new Character();
@@ -35,6 +35,7 @@ export function getReth() {
         // name is used in text
          [
             new Stunt("Kata der Unbeugsamen Sonne", "defend", "forceful" ),
+            // add own Stunt compared to Fate Accelerated
             new Stunt("Kata des Neugierigen Affen", "overcome", "quick"),
             new Stunt("Kata des Sorgfältigen Pfaus", "attack", "careful")
         ]

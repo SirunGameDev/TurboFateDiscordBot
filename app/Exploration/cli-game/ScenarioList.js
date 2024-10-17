@@ -1,5 +1,5 @@
 import { Scenario } from "./Scenario.js";
-import { getFighter, getReth } from "../Archetype.js";
+import  *  as Archetypes from "../Archetype.js";
 
 export let beginn = new Scenario(
     "beginn",
@@ -9,30 +9,29 @@ export let beginn = new Scenario(
     ]
 );
 
+let ArchtypeArray = [
+    
+];
+for(let Archetype in Archetypes) {
+    ArchtypeArray.push({ 
+        name: ""+Archetypes[Archetype]().getName(), 
+        nextScenario: "activity-select", 
+        char: Archetypes[Archetype]()
+    });
+};
 export let charSelect = new Scenario(
     "char-select", 
-    "Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
-    [
-        { name: 'Fighter!', nextScenario: 'activity-select' },
-        { name: 'Reth!', nextScenario: 'activity-select' }
-    ],
+    "Whom you want to play?",
+    ArchtypeArray,
     (Story, playerChoice) => {
-        if(playerChoice == "Reth!") {
-            charSelect.actingCharacter = getReth();
-            Story.actingCharacter = getReth();
+        let activeCharN = ArchtypeArray.find(choise => choise.name === playerChoice).char;
 
-            charSelect.factions[0] = getFighter();
-            Story.factions[0] = getFighter();
+        let enemy = ArchtypeArray.find(choise => choise.name != playerChoice).char;
 
-        }
-        if(playerChoice == "Fighter!") {
-            charSelect.actingCharacter = getFighter();
-            Story.actingCharacter = getFighter();
-
-            charSelect.factions[0] = getReth();
-            Story.factions[0] = getReth();
-
-        }
+        charSelect.actingCharacter = activeCharN;
+        Story.actingCharacter = activeCharN;
+        Story.factions.push(enemy);
+        charSelect.factions.push(enemy);
     },
 );
 
