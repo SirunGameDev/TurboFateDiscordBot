@@ -39,21 +39,21 @@ export let activitySelect = new Scenario (
     "activity-select",
     "What you want to do?",
     [
-        { name: "Kämpfen", nextScenario: 'fight'},
+        { name: "Kämpfen", nextScenario: 'duel'},
         { name: "Parkour", nextScenario: 'parkour'}
     ]
 );
 
 
-export let fight = new Scenario(
-    "fight", 
-    "You fight! What do you do? ", 
+export let duel = new Scenario(
+    "duel", 
+    "You duel! What do you do? ", 
     [
-        { name: "Continue", nextScenario: "fight"},
+        { name: "Continue", nextScenario: "duel"},
         { name: "Flee!", nextScenario: ""},
     ],
     (Story) => {
-        // risk of endless fights?
+        // risk of endless duels?
         let activeChar = Story.actingCharacter;
         let enemyChar = Story.factions[0];
         while (true) {

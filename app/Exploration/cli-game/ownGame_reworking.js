@@ -1,6 +1,6 @@
 import { GameEngine } from "./GameEngine.js";
 import { Story } from "./Story.js";
-import { beginn, charSelect, activitySelect, won, lost, parkour, fight } from "./ScenarioList.js";
+import { beginn, charSelect, activitySelect, won, lost, parkour, duel } from "./ScenarioList.js";
 let ownStory = new Story(
     "ownGame"
 );
@@ -10,7 +10,7 @@ ownStory.scenarios = [
     charSelect,
     activitySelect,
     parkour,
-    fight,
+    duel,
     won,
     lost,
 ];
