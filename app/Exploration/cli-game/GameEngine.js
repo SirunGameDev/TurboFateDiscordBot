@@ -31,7 +31,7 @@ export class GameEngine {
     }
     async startGame() {
         let scenarios = this.Story.scenarios;
-        let currentScenario = scenarios.find(scenario => scenario.name === 'beginn');
+        let currentScenario = scenarios[0];
 
         // Continue looping through scenarios as long as there's a current scenario
         scenarioLoop: while (currentScenario) {

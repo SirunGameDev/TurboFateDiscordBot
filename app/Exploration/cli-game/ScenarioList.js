@@ -118,3 +118,18 @@ export let lost = new Scenario(
       { name: "Oh no!", nextScenario: ""}
     ]
 )
+export let ArchetypeStoryIntro = new Scenario (
+    "ArchetypeStoryIntro",
+    "Dies ist ein kleines Solo-Abenteuer mit einem Beispielcharakter auf Basis von angepassten TurboFate-Regeln.",
+    [
+        // todo let choices be flexible depending on context
+        {name: "Auf geht es", nextScenario: "RethBeginn" }
+    ]
+)
+export let RethBeginn = new Scenario (
+    "RethBeginn",
+    "",
+    [
+        { name: "Oh no!", nextScenario: ""}
+    ]
+)
