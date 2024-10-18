@@ -69,8 +69,8 @@ export function getVoltaire() {
             new Stunt("Verwegener Fechtkünstler", "attack", "flashy"),
 
             //own Stunts:
-            new Stunt(),
-            new Stunt(),
+            new Stunt("Riposte", "defend", "sneaky"),
+            new Stunt("Balance gelernt", "overcome", "quick"),
 
         ]
     );
@@ -78,4 +78,31 @@ export function getVoltaire() {
     char.setDescription("Voltaire ist die Kapitänin der Wolkenhüpfer ... ");
 
     return char;
+}
+
+export function getAbigail() {
+    var char = new Character();
+    char.setName("Abigail Zhao");
+
+    char.setAspects(1, new Aspect("Verzauberungs-Spezialistin aus dem Greifenhaus", "untilChanged", "HighConcept"));
+    char.setAspects(2, new Aspect("Erst zaubern, dann fragen.", "untilChanged", "Troube"));
+    char.setAspects(3, new Aspect("Ich hasse diese Typen aus dem Zyklopenhaus", "untilChanged", ""));
+    char.setAspects(4, new Aspect("Sarah gibt mir Rückendeckung", "untilChanged", ""));
+    char.setAspects(5, new Aspect("Dexter Fitzwilliam wird untergehen", "untilChanged", ""));
+
+    char.setApproaches(
+        new Approaches(0, 2, 1, 2, 1, 3)
+    );
+
+    // todo Stunt with no flat bonus
+    char.setStunts(
+        [
+            new Stunt("Liebling der Lehrer", "", ""), //neeeds rework or maybe createAdventage and tückisch
+
+            // own Stunts
+            new Stunt("Stille Flüche", "attack", "sneaky"),
+            new Stunt("Studium zahlt sich aus", "createAdvantage", "clever"),
+            new Stunt("Kraft schützt", "defend", "forceful")
+        ]
+    );
 }
