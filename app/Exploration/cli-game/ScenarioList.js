@@ -9,21 +9,27 @@ export let beginn = new Scenario(
     ]
 );
 
-let ArchtypeArray = [
+function getArchtypeArray() {
+    let ArchtypeArray = [
     
-];
-for(let Archetype in Archetypes) {
-    ArchtypeArray.push({ 
-        name: ""+Archetypes[Archetype]().getName(), 
-        nextScenario: "activity-select", 
-        char: Archetypes[Archetype]()
-    });
+    ];
+    for(let Archetype in Archetypes) {
+        ArchtypeArray.push({ 
+            name: ""+Archetypes[Archetype]().getName(), 
+            nextScenario: "activity-select", 
+            char: Archetypes[Archetype]()
+        });
+    };
+
+    return ArchtypeArray;
 };
+
 export let charSelect = new Scenario(
     "char-select", 
     "Whom you want to play?",
-    ArchtypeArray,
+    getArchtypeArray(),
     (Story, playerChoice) => {
+        let ArchtypeArray = getArchtypeArray();
         let activeCharN = ArchtypeArray.find(choise => choise.name === playerChoice).char;
 
         let enemy = ArchtypeArray.find(choise => choise.name != playerChoice).char;

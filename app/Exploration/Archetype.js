@@ -105,4 +105,32 @@ export function getAbigail() {
             new Stunt("Kraft schützt", "defend", "forceful")
         ]
     );
+
+    return char;
+}
+
+export function getBethesda() {
+    let char = new Character();
+
+    char.setName("Bethesda Flushing");
+
+    char.setAspects(1, new Aspect("Chief Field Agent of IGEMA", "untilChanged", "HighConcept"));
+    char.setAspects(2, new Aspect("I'll Get You, von Stendahl", "untilChanged", "Trouble"));
+    char.setAspects(3, new Aspect("My Inventions Almost Always Work. Almost", "untilChanged", ""));
+    char.setAspects(4, new Aspect("My Grad Students Come Through, Just Not How i Expect Them To", "untilChanged", ""));
+    char.setAspects(5, new Aspect("I Turst Dr. Alemieda's Genius", "untilChanged", ""));
+    
+    char.setApproaches(
+        new Approaches(2, 3, 1, 2, 1, 0)
+    );
+
+    char.setStunts([
+        new Stunt("Experimental Helo Pack", "createAdvantage", "quick"),
+        new Stunt("Gadgeteer", "", ""), // todo add different Stunt type - just eliminate one aspect 
+
+        new Stunt("Exo-Skelett", "attack", "forceful"),
+        new Stunt("Studien der Präventiven Maßnahmen", "defend", "clever"),
+    ]);
+
+    return char;
 }

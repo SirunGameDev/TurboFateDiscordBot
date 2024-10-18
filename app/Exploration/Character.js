@@ -213,13 +213,22 @@ export class Character {
     overcome(difficulty) {
         return difficulty <= this.doAction("overcome");
     }
-    doAction(action) {
+    doAction(action, investedFatepoints = 0) {
         // always forceful, stunts
         // todo let approach change
-        let approach = "forceful";
+        let approach = this.getHighestApproachforAction(action);
         let stunts = this.findfittingStuntsbyActionApproach(action, approach);
+        let usedFatePoints
+        if(investedFatepoints <= this.getFatePoints()) {
+            usedFatePoints = investedFatepoints;
+        }
+        else {
+            usedFatePoints = this.getFatePoints();
+        }
+
+        this.setFatePoints(this.getFatePoints()-usedFatePoints);
         // todo change add calculation
-        let add = 2*stunts.length;
+        let add = 2*stunts.length+2*usedFatePoints;
         return this.makeThrow()+this.getApproaches()[approach]+add;
     }
     getHighestApproachforAction(action) {
