@@ -25,7 +25,7 @@ export function getReth() {
     var char = new Character();
 
     char.setName("Reth vom Andrali-Widerstand");
-    char.setDescription ("Reth ist 14 Jahre alt. Er hat dunkelbraune Haut und dunkle Haare, die er in dicken Dreadlocks trägt. ...");
+    char.setDescription ("Reth is 14 years of age. He has dark brown skin and dark hair that he wears in thick dreadlocks. He wears light, loose-fitting clothing and sandals, and he’s a skilled martial artist. He’s the most powerful Suncaller to be born in generations; he can magically call forth the power of fire. Originally from a town in the vast Andral Desert, he and his friends took a stand against the invading Steel Empire and have been living on the run since.");
     
     char.setApproaches(
         // (careful?: 2, clever?: 1, flashy?: 0, forceful?: 3, quick?: 2, sneaky?: 1)

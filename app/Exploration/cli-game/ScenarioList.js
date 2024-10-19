@@ -1,4 +1,4 @@
-import { Scenario } from "./Scenario.js";
+import { Scenario, emptyReturn } from "./Scenario.js";
 import  *  as Archetypes from "../Archetype.js";
 
 export let beginn = new Scenario(
@@ -23,21 +23,23 @@ function getArchtypeArray() {
 
     return ArchtypeArray;
 };
+function charSelectbyPlayerChoice(Story, playerChoice) {
+    let ArchtypeArray = getArchtypeArray();
+    let activeCharN = ArchtypeArray.find(choise => choise.name === playerChoice).char;
 
+    let enemy = ArchtypeArray.find(choise => choise.name != playerChoice).char;
+
+    charSelect.actingCharacter = activeCharN;
+    Story.actingCharacter = activeCharN;
+    Story.factions.push(enemy);
+    charSelect.factions.push(enemy);
+}
 export let charSelect = new Scenario(
     "char-select", 
     "Whom you want to play?",
     getArchtypeArray(),
     (Story, playerChoice) => {
-        let ArchtypeArray = getArchtypeArray();
-        let activeCharN = ArchtypeArray.find(choise => choise.name === playerChoice).char;
-
-        let enemy = ArchtypeArray.find(choise => choise.name != playerChoice).char;
-
-        charSelect.actingCharacter = activeCharN;
-        Story.actingCharacter = activeCharN;
-        Story.factions.push(enemy);
-        charSelect.factions.push(enemy);
+        charSelectbyPlayerChoice(Story, playerChoice);
     },
 );
 
@@ -124,12 +126,55 @@ export let ArchetypeStoryIntro = new Scenario (
     [
         // todo let choices be flexible depending on context
         {name: "Auf geht es", nextScenario: "RethBeginn" }
-    ]
+    ],
+    emptyReturn,
+    (Story) => {
+        //really needed?
+        Story.actingCharacter = this.actingCharacter;
+    }
+)
+export let ArchetypeRuleIntro = new Scenario (
+    "ArchetypeRuleIntro",
+    "",
+    [
+        { name: ""}
+    ],
+    emptyReturn,
+    emptyReturn,
+    (Story) => {
+        let text = "Ein Charakter hat sechs Methoden (Approaches), Stunts und Aspekte, die den Charakter auch regeltechnisch beschreibt. Diese nutzt er um bei den vier Aktionen Attackieren, Verteidigen, Vorteil erschaffen und Überwinden.";
+        let char = Story.actingCharacter;
+        text += "\n"+JSON.stringify(char.getApproaches().getArray());
+        return text;
+    },
+    emptyReturn,
 )
 export let RethBeginn = new Scenario (
     "RethBeginn",
     "",
     [
-        { name: "Oh no!", nextScenario: ""}
-    ]
+        { name: "Oh no!", nextScenario: "ArchetypeRuleIntro"}
+    ],
+    emptyReturn,
+    emptyReturn,
+    (Story) => {
+        let text = updateMessage(Story, RethBeginn);
+        text += "\n"+Story.actingCharacter.getDescription();
+        return text;
+    },
+    (Story) => {
+        charSelectbyPlayerChoice(Story, Archetypes.getReth().getName());
+        Story.factions = [];
+    }
 )
+
+function updateMessage(Story, scenario) {
+
+    if(Story.actingCharacter) {
+        scenario.message = "Your Char: "+Story.actingCharacter.getName()+"\n"+scenario.message;
+    }
+    if(Story.factions[0]) {
+        scenario.message = "Your Enemy: "+Story.factions[0].getName()+"\n"+scenario.message;
+    }
+    return scenario.message;
+}

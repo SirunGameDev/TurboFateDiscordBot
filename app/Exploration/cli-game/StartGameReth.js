@@ -8,6 +8,7 @@ let ownStory = new Story(
 ownStory.scenarios = [
     SL.ArchetypeStoryIntro,
     SL.RethBeginn,
+    SL.ArchetypeRuleIntro,
 ];
 
 let ownGame = new GameEngine(
