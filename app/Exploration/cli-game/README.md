@@ -1,5 +1,4 @@
 # Dokumentation of Start Game as Reth:
-
 StartGameReth - a game about learning Fate Accelerated.
 Goal: 
 Have a interessting short story with different outcomes.
