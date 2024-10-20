@@ -8,9 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - run: docker-compose up -d --build
-    - run: docker exec -it turbofate_app /bin/sh
-    - run: npm ci
-    - run: npm install
-    - run: node --test
+    - name: Checkout
+      uses: actions/checkout@v1
+    - name: Start Docker
+      run: docker-compose up -d --build
+    - name: Enter Docker App Container
+      run: docker exec -it turbofate_app /bin/sh
+    - name: Prepare files
+      run: npm ci
+    - name: Prepare files 2
+      run: npm install
+    - name: Run tests
+      run: node --test
+    - name: Cleanup
+      run: docker-compose down
     
