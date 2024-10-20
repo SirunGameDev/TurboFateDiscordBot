@@ -13,7 +13,7 @@ jobs:
     - name: Start Docker
       run: docker compose up -d --build
     - name: Enter Docker App Container
-      run: docker exec -it turbofate_app /bin/sh
+      run: docker exec turbofate_app /bin/sh
     - name: Prepare files
       run: npm ci
     - name: Prepare files 2
