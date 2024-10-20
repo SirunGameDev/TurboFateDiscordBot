@@ -137,14 +137,29 @@ export let ArchetypeRuleIntro = new Scenario (
     "ArchetypeRuleIntro",
     "",
     [
-        { name: ""}
+        { name: "Weiter Intro"},
+        { name: "Intro überspringen"}
     ],
     emptyReturn,
     emptyReturn,
     (Story) => {
-        let text = "Ein Charakter hat sechs Methoden (Approaches), Stunts und Aspekte, die den Charakter auch regeltechnisch beschreibt. Diese nutzt er um bei den vier Aktionen Attackieren, Verteidigen, Vorteil erschaffen und Überwinden.";
+        // Text mit 
+        let text = 
+        `Ein Charakter hat sechs Methoden (Approaches), Stunts und Aspekte, die den Charakter auch regeltechnisch beschreibt.
+        Diese nutzt er um bei den vier Aktionen Attackieren, Verteidigen, Vorteil erschaffen und Überwinden, Boni zu haben.`;
         let char = Story.actingCharacter;
-        text += "\n"+JSON.stringify(char.getApproaches().getArray());
+        for(let aspect in char.getAspects())
+        {
+            //text += "\n"+JSON.stringify(aspect);
+            text += "\n"+aspect+": "+char.getAspects()[aspect].getDescription();
+
+        }
+        for(let approach of char.getApproaches().getArray()) {
+            text += "\n"+JSON.stringify(approach);
+        }
+        for (let stunt in char.getStunts()) {
+            text += "\n"+JSON.stringify(char.getStunts()[stunt])
+        }
         return text;
     },
     emptyReturn,
@@ -153,7 +168,7 @@ export let RethBeginn = new Scenario (
     "RethBeginn",
     "",
     [
-        { name: "Oh no!", nextScenario: "ArchetypeRuleIntro"}
+        { name: "Mit Intro bitte", nextScenario: "ArchetypeRuleIntro"}
     ],
     emptyReturn,
     emptyReturn,
