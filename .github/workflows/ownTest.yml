@@ -1,0 +1,16 @@
+name: ownTest
+
+on: 
+  workflow_dispatch:
+
+jobs: 
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - run: docker-compose up -d --build
+    - run: docker exec -it turbofate_app /bin/sh
+    - run: npm ci
+    - run: npm install
+    - run: node --test
+    
