@@ -3,5 +3,4 @@
     "expr": true,
     "sub": true,
     "loopfunc": true,
-    "remark-lint-final-newline": false
 }
