@@ -17,6 +17,6 @@ ownStory.scenarios = [
 
 let ownGame = new GameEngine(
     ownStory
-)
+);
 
 ownGame.startGame();
