@@ -15,11 +15,11 @@ jobs:
     - name: Enter Docker App Container
       run: docker exec turbofate_app /bin/sh
     - name: Prepare files
-      run: npm ci
+      run: docker exec turbofate_app npm ci
     - name: Prepare files 2
-      run: npm install
+      run: docker exec turbofate_app npm install
     - name: Run tests
-      run: node --test
+      run: docker exec turbofate_app node --test
     - name: Cleanup
       run: docker compose down
     
