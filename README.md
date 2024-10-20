@@ -20,7 +20,7 @@ Das Projekt umfasst das Ziel ein Bot zu erstellen, der verschiedene Dienste bere
 ## Erledigte Tasks
 
 0. License-Texte
-LICENSE_bot für Struktur aus https://discord.com/developers/docs/getting-started
+LICENSE_bot für Struktur aus <https://discord.com/developers/docs/getting-started>
 LICENSE_TurboFate für GameEngine
 
 1. Exploration starten: TurboFate Bibliothek beginnen, Testmöglichkeiten erstellen - auto (unit-tests) und manuell (lokal per cli-game)
