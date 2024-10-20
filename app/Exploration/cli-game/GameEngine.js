@@ -9,7 +9,7 @@ export class GameEngine {
     async presentScenario (scenario) {
 
         if(scenario.messageUpdater != "") {
-            scenario.message = scenario.messageUpdater(this.Story)
+            scenario.message = scenario.messageUpdater(this.Story);
         }
 
         // todo flexibel presentation, so not all scenarios needs 

@@ -17,7 +17,7 @@ export function getFighter() {
             new Stunt("Smith", "createAdventage", "forceful")
         ]
     );
-    let HighConcept = new Aspect("Fighter with Sword and Shield", "untilChanged", "HighConcept")
+    let HighConcept = new Aspect("Fighter with Sword and Shield", "untilChanged", "HighConcept");
     char.setAspects(1, HighConcept);
     return char;
 }

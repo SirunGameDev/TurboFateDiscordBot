@@ -57,7 +57,7 @@ let scenarios = [
           { name: "Oh no!", nextScenario: ""}
         ]
     )
-]
+];
 
 const presentScenario = async (scenario, char, enemy) => {
 

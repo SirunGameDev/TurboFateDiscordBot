@@ -158,7 +158,7 @@ export let ArchetypeRuleIntro = new Scenario (
             text += "\n"+JSON.stringify(approach);
         }
         for (let stunt in char.getStunts()) {
-            text += "\n"+JSON.stringify(char.getStunts()[stunt])
+            text += "\n"+JSON.stringify(char.getStunts()[stunt]);
         }
         return text;
     },
