@@ -3,10 +3,10 @@ import { Approaches } from "./Approaches.js";
 import { Stunt } from "./Stunt.js";
 import { Aspect } from "./Aspect.js";
  
-export function getFighter() {
+export function getSteelFighter() {
     var char = new Character();
 
-    char.setName("Fighter");
+    char.setName("Steel Fighter");
     char.setApproaches(
         new Approaches(2, 0, 1, 3, 2, 1)
     );
@@ -19,5 +19,25 @@ export function getFighter() {
     );
     let HighConcept = new Aspect("Fighter with Sword and Shield", "untilChanged", "HighConcept");
     char.setAspects(1, HighConcept);
+    return char;
+}
+
+export function getSteelAssassin() {
+    var char = new Character();
+
+    char.setName("Steel Assassin");
+
+    char.setApproaches(
+        new Approaches(2, 2, 1, 0, 1, 3)
+    );
+
+    return char;
+}
+
+export function getSteelMage() {
+    var char = new Character();
+
+    char.setName("Steel Mage");
+
     return char;
 }

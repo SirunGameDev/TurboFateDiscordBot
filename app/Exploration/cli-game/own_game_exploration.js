@@ -1,8 +1,8 @@
 import inquirer from "inquirer";
 
-import {getFighter, getReth} from "../Archetype.js";
+import { getReth } from "../Archetype.js";
 import { Scenario } from "./Scenario.js";
-
+import { getSteelFighter } from "../Enemys.js";
 // todo let vs var vs const
 let scenarios = [
     new Scenario(
@@ -14,7 +14,7 @@ let scenarios = [
     ),
     new Scenario(
         "char-select", 
-        "Whom you want to play? As "+getFighter().getName()+" or "+getReth().getName(), 
+        "Whom you want to play? As "+getSteelFighter().getName()+" or "+getReth().getName(), 
         [
             { name: 'Fighter!', nextScenario: 'activity-select' },
             { name: 'Reth!', nextScenario: 'activity-select' }
@@ -98,10 +98,10 @@ const startGame = async () => {
         // todo Move scenario handling to an extra function 
         if(playerChoice == "Reth!") {
             activeChar = getReth();
-            enemyChar = getFighter();
+            enemyChar = getSteelFighter();
         }
         if(playerChoice == "Fighter!") {
-            activeChar = getFighter();
+            activeChar = getSteelFighter();
             enemyChar = getReth();
         }
         

@@ -1,4 +1,3 @@
-
 export class Approaches {
     careful = 0;
     clever = 0;
@@ -18,17 +17,19 @@ export class Approaches {
     }
     getArray() {
     return [
-        {careful : this.careful},
-        
-        {clever : this.clever},
+            {careful : this.careful},
+            
+            {clever : this.clever},
 
-        {flashy : this.flashy},
+            {flashy : this.flashy},
 
-        {forceful : this.forceful},
+            {forceful : this.forceful},
 
-        {quick : this.quick},
+            {quick : this.quick},
 
-        {sneaky : this.sneaky},
+            {sneaky : this.sneaky},
 
-    ];}
+        ];
+    }
+
 }

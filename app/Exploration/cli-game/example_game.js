@@ -4,7 +4,8 @@ import { program } from "commander";
 import chalk from "chalk";
 import inquirer from "inquirer";
 import ora from "ora";
-import {getFighter, getReth} from "../Archetype.js";
+import { getReth} from "../Archetype.js";
+import { getSteelFighter } from "../Enemys.js";
 program.version("1.0.0").description("My Node CLI");
 
 program.action(() => {
