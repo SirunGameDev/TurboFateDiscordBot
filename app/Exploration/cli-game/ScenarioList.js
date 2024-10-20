@@ -119,7 +119,7 @@ export let lost = new Scenario(
     [
       { name: "Oh no!", nextScenario: ""}
     ]
-)
+);
 export let ArchetypeStoryIntro = new Scenario (
     "ArchetypeStoryIntro",
     "Dies ist ein kleines Solo-Abenteuer mit einem Beispielcharakter auf Basis von angepassten TurboFate-Regeln.",
@@ -132,7 +132,7 @@ export let ArchetypeStoryIntro = new Scenario (
         //really needed?
         Story.actingCharacter = this.actingCharacter;
     }
-)
+);
 export let ArchetypeRuleIntro = new Scenario (
     "ArchetypeRuleIntro",
     "",
@@ -163,7 +163,7 @@ export let ArchetypeRuleIntro = new Scenario (
         return text;
     },
     emptyReturn,
-)
+);
 export let RethBeginn = new Scenario (
     "RethBeginn",
     "",
@@ -181,7 +181,7 @@ export let RethBeginn = new Scenario (
         charSelectbyPlayerChoice(Story, Archetypes.getReth().getName());
         Story.factions = [];
     }
-)
+);
 
 function updateMessage(Story, scenario) {
 
