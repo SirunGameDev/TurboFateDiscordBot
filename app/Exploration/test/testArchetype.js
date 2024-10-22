@@ -15,12 +15,12 @@ describe("Archetypes", (t) => {
     });
     it("getBethesda", () => {
         assert.doesNotThrow(() => {
-            let Voltaire = Archetypes.getBethesda();
+            let Bethesda = Archetypes.getBethesda();
         });
     });
     it("getAbigail", () => {
         assert.doesNotThrow(() => {
-            let Voltaire = Archetypes.getAbigail();
+            let Abigail = Archetypes.getAbigail();
         });
     });
 });
