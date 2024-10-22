@@ -19,7 +19,7 @@ jobs:
     - name: Prepare files 2
       run: docker exec turbofate_app npm install
     - name: Run tests
-      run: docker exec turbofate_app node --test
+      run: docker exec turbofate_app node --test --experimental-test-coverage
     - name: Cleanup
       run: docker compose down
     

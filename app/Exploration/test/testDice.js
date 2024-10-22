@@ -7,5 +7,9 @@ describe('Dice' , (t) => {
         assert.strictEqual(true, -4 <= Dice.getTurboFateRoll());
         assert.strictEqual(true, 4  >= Dice.getTurboFateRoll());
     });
+    it("D6", () => {
+        assert.strictEqual(true, 0 <= Dice.getD6());
+        assert.strictEqual(true, 6 >= Dice.getD6());
 
+    });
 });
