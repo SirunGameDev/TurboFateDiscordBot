@@ -9,11 +9,11 @@ describe("Aspect throw no error", (t) =>{
         });
     });
     it("test getter", () => {
-        let aspObj = new Aspect("test", "test", "test");
+        let aspObj = new Aspect("testa", "testb", "testc");
 
-        assert.strictEqual("test", aspObj.getContext());
-        assert.strictEqual("test", aspObj.getDescription());
-        assert.strictEqual("test", aspObj.getLifetime());
+        assert.strictEqual("testc", aspObj.getContext());
+        assert.strictEqual("testa", aspObj.getDescription());
+        assert.strictEqual("testb", aspObj.getLifetime());
 
     });
 });
