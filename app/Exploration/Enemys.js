@@ -39,5 +39,9 @@ export function getSteelMage() {
 
     char.setName("Steel Mage");
 
+    char.setApproaches(
+        new Approaches(3, 2, 2, 1, 1, 0)
+    );
+
     return char;
 }
