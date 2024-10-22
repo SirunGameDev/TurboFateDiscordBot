@@ -38,6 +38,7 @@ export class Character {
         6 : 0,
     };
     #alive = true;
+
     constructor() {
 
     }
@@ -84,8 +85,9 @@ export class Character {
     setFatePoints(number) {
         this.#fatepoints = number;
     }
-    getAspects() {
-        return this.#aspects;
+
+    getAspects(place) {
+        return this.#aspects[place];
     }
     setAspects(place, Obj) {
         this.#aspects[place] = Obj;
@@ -200,23 +202,19 @@ export class Character {
         return dmg;
     }
 
-    soakWith (dmg,obj) {
-        // todo abstract stress and consqeuences
+    attack (investedFatepoints = 0) {
+        return this.doAction("attack", investedFatepoints);
     }
-
-    attack () {
-        return this.doAction("attack");
+    defend(investedFatepoints = 0){
+        return this.doAction("defend", investedFatepoints);
     }
-    defend(){
-        return this.doAction("defend");
+    overcome(difficulty, investedFatepoints = 0) {
+        return difficulty <= this.doAction("overcome", investedFatepoints);
     }
-    overcome(difficulty) {
-        return difficulty <= this.doAction("overcome");
-    }
-    doAction(action, investedFatepoints = 0) {
+    doAction(action, investedFatepoints = 0, approach = this.getHighestApproachforAction(action)) {
         // always forceful, stunts
         // todo let approach change
-        let approach = this.getHighestApproachforAction(action);
+        //let approach = this.getHighestApproachforAction(action);
         let stunts = this.findfittingStuntsbyActionApproach(action, approach);
         let usedFatePoints
         if(investedFatepoints <= this.getFatePoints()) {
