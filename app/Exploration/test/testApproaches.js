@@ -25,7 +25,6 @@ describe("Approaches", (t) => {
             {quick : 0},
 
             {sneaky : 0},
-        ])
+        ]);
     });
-}
-)
+});
