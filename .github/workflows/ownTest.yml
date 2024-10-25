@@ -13,13 +13,13 @@ jobs:
     - name: Start Docker
       run: docker compose up -d --build
     - name: Enter Docker App Container
-      run: docker exec turbofate_app /bin/sh
+      run: docker exec turbofate_node_app /bin/sh
     - name: Prepare files
-      run: docker exec turbofate_app npm ci
+      run: docker exec turbofate_node_app npm ci
     - name: Prepare files 2
-      run: docker exec turbofate_app npm install
+      run: docker exec turbofate_node_app npm install
     - name: Run tests
-      run: docker exec turbofate_app node --test --experimental-test-coverage
+      run: docker exec turbofate_node_app node --test --experimental-test-coverage
     - name: Cleanup
       run: docker compose down
     

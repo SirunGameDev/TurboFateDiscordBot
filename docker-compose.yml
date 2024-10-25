@@ -1,9 +1,23 @@
 services:
+  deno:
+    build: ./docker/deno
+    image: deno_turbofate
+    restart: always
+    container_name: turbofate_deno_app
+    volumes:
+      - ./app/:/app
+    ports:
+      - 3002:3000
+    expose:
+      - 3000
+    tty: true
+    command:
+      - /bin/sh
   nodejs:
-    build: ./docker/
+    build: ./docker/node
     image: node_turbofate
     restart: always
-    container_name: turbofate_app
+    container_name: turbofate_node_app
     working_dir: /var/www/html/app
     volumes:
       - ./app/:/var/www/html/app
