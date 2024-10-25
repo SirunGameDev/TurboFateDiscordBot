@@ -1,5 +1,6 @@
 services:
   deno:
+    user: ${UID}:${GID}
     build: ./docker/deno
     image: deno_turbofate
     restart: always
