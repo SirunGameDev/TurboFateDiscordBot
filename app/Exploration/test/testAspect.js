@@ -16,4 +16,19 @@ describe("Aspect throw no error", (t) =>{
         assert.strictEqual("testb", aspObj.getLifetime());
 
     });
+
+    it("usages", () => {
+        let aspObj = new Aspect("Test A", "Test B", "Test C", 2);
+
+        aspObj.addUses();
+        aspObj.addUses(3);
+
+        assert.strictEqual(7, aspObj.getFreeUsage());
+
+        aspObj.useUsages();
+        aspObj.useUsages(3);
+
+        assert.strictEqual(3, aspObj.getFreeUsage());
+
+    });
 });

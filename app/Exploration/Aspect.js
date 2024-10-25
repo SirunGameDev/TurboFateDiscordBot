@@ -5,10 +5,13 @@ export class Aspect {
 
     #context;
 
-    constructor (desc, lifetime, context) {
+    #freeUsage;
+
+    constructor (desc, lifetime, context, freeUsage = 0) {
         this.#description = desc;
         this.#lifetime = lifetime;
         this.#context = context;
+        this.#freeUsage = freeUsage;
     }
     getDescription() {
         return this.#description;
@@ -19,4 +22,17 @@ export class Aspect {
     getContext() {
         return this.#context;
     }
+
+    getFreeUsage(){
+        return this.#freeUsage;
+    }
+
+    addUses(add = 2) {
+        this.#freeUsage += add;
+    }
+
+    useUsages(sub = 1) {
+        this.#freeUsage -= sub;
+    }
+
 }
