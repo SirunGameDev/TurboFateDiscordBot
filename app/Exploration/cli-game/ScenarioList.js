@@ -8,7 +8,7 @@ export let beginn = new Scenario(
         {name: "Wähle einen Charakter", nextScenario: 'char-select'},
     ]
 );
-
+// todo move to better location
 function getArchtypeArray() {
     let ArchtypeArray = [
     
@@ -23,6 +23,7 @@ function getArchtypeArray() {
 
     return ArchtypeArray;
 };
+// todo move to better location
 function charSelectbyPlayerChoice(Story, playerChoice) {
     let ArchtypeArray = getArchtypeArray();
     let activeCharN = ArchtypeArray.find(choise => choise.name === playerChoice).char;
