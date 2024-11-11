@@ -75,7 +75,7 @@ describe('Character' , (t) => {
 
         assert.throws(() => {
             charObj.setPronouns(1234);
-        })
+        });
     });
     it("test description handling", () => {
         var charObj = new Character();
@@ -98,7 +98,7 @@ describe('Character' , (t) => {
 
         assert.deepEqual("", charObj.getAspects(1));
 
-        charObj.setAspects(1, new Aspect("", "", ""))
+        charObj.setAspects(1, new Aspect("", "", ""));
         assert.deepEqual(new Aspect("", "", ""), charObj.getAspects(1));
 
     });
