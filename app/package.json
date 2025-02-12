@@ -18,7 +18,7 @@
     "dependencies": {
         "chalk": "^5.4.1",
         "commander": "^13.1.0",
-        "discord-interactions": "^4.0.0",
+        "discord-interactions": "^4.1.1",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
         "inquirer": "^12.3.2",
