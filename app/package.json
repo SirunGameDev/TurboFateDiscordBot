@@ -21,7 +21,7 @@
         "discord-interactions": "^4.1.1",
         "dotenv": "^16.4.7",
         "express": "^4.21.2",
-        "inquirer": "^12.4.3",
+        "inquirer": "^12.5.0",
         "ora": "^8.2.0"
     },
     "devDependencies": {
