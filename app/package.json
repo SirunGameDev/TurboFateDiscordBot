@@ -20,7 +20,7 @@
         "commander": "^13.1.0",
         "discord-interactions": "^4.1.1",
         "dotenv": "^16.5.0",
-        "express": "^4.21.2",
+        "express": "^5.1.0",
         "inquirer": "^12.5.2",
         "ora": "^8.2.0"
     },
