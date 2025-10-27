@@ -17,7 +17,7 @@
     "license": "MIT",
     "dependencies": {
         "chalk": "^5.5.0",
-        "commander": "^14.0.0",
+        "commander": "^14.0.2",
         "discord-interactions": "^4.3.0",
         "dotenv": "^17.2.1",
         "express": "^5.1.0",
